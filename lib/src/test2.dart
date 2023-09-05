@@ -2,6 +2,7 @@
 
 import 'package:ecfisher/core/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'view/widget/default_button.dart';
 
@@ -61,14 +62,19 @@ class _SignFormState extends State<SignForm> {
           DefaultButton(
             text: "Continue",
             press: () {
+              
+              }, child: null,
               // if (_formKey.currentState!.validate()) {
               //   _formKey.currentState!.save();
               //   // if all are valid then go to success screen
               //   KeyboardUtil.hideKeyboard(context);
               //   Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               // }
-            },
+              
+            
           ),
+          
+          
           SizedBox(height: (10/ 375.0) * scrheight,),
         ],
       ),

@@ -14,6 +14,8 @@ import 'profile_screen.dart';
 final ProductController controller = Get.put(ProductController());
 
 class HomeScreen extends StatelessWidget {
+  static String id='HomeScreen';
+
   const HomeScreen({Key? key}) : super(key: key);
 
   static const List<Widget> screens = [

@@ -1,4 +1,3 @@
-
 import 'package:ecfisher/core/extensions.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';

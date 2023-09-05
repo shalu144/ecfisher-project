@@ -12,7 +12,9 @@ final ProductController controller = Get.put(ProductController());
 class ProductDetailScreen extends StatelessWidget {
   final PageController _pageController = PageController(initialPage: 0);
 
+
   final Product product;
+  
 
   ProductDetailScreen(this.product, {Key? key}) : super(key: key);
 
@@ -87,7 +89,15 @@ class ProductDetailScreen extends StatelessWidget {
 
   Widget _ratingBar(BuildContext context) {
     return Row(
-      children: [
+      mainAxisSize: MainAxisSize.min,
+      children: 
+        List.generate(5, (index) {
+        return Icon(
+           Icons.star_border,
+           color: Colors.amber,
+           size:48,
+        );
+        })
         // RatingBar.builder(
         //     initialRating: product.rating,
         //     direction: Axis.horizontal,
@@ -103,7 +113,7 @@ class ProductDetailScreen extends StatelessWidget {
         //       .headline3
         //       ?.copyWith(fontWeight: FontWeight.w300),
         // )
-      ],
+      
     );
   }
 

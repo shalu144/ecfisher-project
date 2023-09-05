@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'dart:math';
-
 
 import '../../../core/app_color.dart';
 import 'drawer.dart';
@@ -12,9 +10,8 @@ import '../../controller/product_controller.dart';
 import '../widget/product_grid_view.dart';
 import 'order_tracking.dart';
 
-
-
 final ProductController controller = Get.put(ProductController());
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -28,147 +25,148 @@ class _HomePageState extends State<HomePage> {
   final _searchvalue = TextEditingController();
   int pageIndex = 0;
 
-
   double vlu = 0;
 
   @override
   Widget build(BuildContext context) {
     double scrheight = MediaQuery.of(context).size.height;
     double scrwidth = MediaQuery.of(context).size.width;
-    
-  Widget _recommendedProductListView(BuildContext context) {
-    return SizedBox(
-      height: 170,
 
-      child: ListView.builder(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          shrinkWrap: true,
-          
-          physics: ClampingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: AppData.recommendedProducts.length,
-          itemBuilder: (_, index) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: Container(
-                width: 300,
-                decoration: BoxDecoration(
-                  image: const DecorationImage(
-            image: NetworkImage("https://ecfisher.com/admin/upload/slider/1621235992666.png"),
-            fit: BoxFit.cover,
-          ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          
-                    const Spacer(),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              primary: AppData.recommendedProducts[index]
-                                  .buttonBackgroundColor,
-                              elevation: 0,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 18),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                            ),
-                            child: Text(
-                              "Get Now",
-                              style: TextStyle(
-                                  color: AppData.recommendedProducts[index]
-                                      .buttonTextColor!),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    
-                  ],
-                ),
-              ),
-            );
-          }),
-    );
-  }
-
-  Widget _topCategoriesHeader(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Top categories",
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          TextButton(
-            onPressed: () {
-              setState(() {
-                controller.switchBetweenBottomNavigationItems (2);
-              });
-            },
-            style: TextButton.styleFrom(primary: AppColor.theme),
-            child: Text(
-              "SEE ALL",
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(color: AppColor.theme.withOpacity(0.7)),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _topCategoriesListView() {
-    return SizedBox(
-      height: 50,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: controller.length,
-        itemBuilder: (_, index) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 5),
-            child: GetBuilder<ProductController>(
-              builder: (ProductController controller) {
-                return AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
-                  width: 50,
-                  height: 100,
+    Widget _recommendedProductListView(BuildContext context) {
+      return SizedBox(
+        height: 170,
+        child: ListView.builder(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            shrinkWrap: true,
+            physics: ClampingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemCount: AppData.recommendedProducts.length,
+            itemBuilder: (_, index) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Container(
+                  width: 300,
                   decoration: BoxDecoration(
-                    color: controller.categories[index].isSelected == false
-                        ?  Colors.white
-                        : AppColor.theme,
-                    borderRadius: BorderRadius.circular(10),
+                    image: const DecorationImage(
+                      image: NetworkImage(
+                          "https://ecfisher.com/admin/upload/slider/1621235992666.png"),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  child: IconButton(
-                    splashRadius: 0.1,
-                    icon: FaIcon(controller.categories[index].icon,
-                        color: controller.categories[index].isSelected == false
-                            ? AppColor.theme
-                            : Colors.white),
-                    onPressed: () => controller.filterItemsByCategory(index),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Spacer(),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                primary: AppData.recommendedProducts[index]
+                                    .buttonBackgroundColor,
+                                elevation: 0,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 18),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                              ),
+                              child: Text(
+                                "Get Now",
+                                style: TextStyle(
+                                    color: AppData.recommendedProducts[index]
+                                        .buttonTextColor!),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
                   ),
-                );
-              },
-            ),
-          );
-        },
-      ),
-    );
-  }
+                ),
+              );
+            }),
+      );
+    }
 
+    Widget _topCategoriesHeader(BuildContext context) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Top categories",
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  controller.switchBetweenBottomNavigationItems(2);
+                });
+              },
+              style: TextButton.styleFrom(primary: AppColor.theme),
+              child: Text(
+                "SEE ALL",
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: AppColor.theme.withOpacity(0.7)),
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
+    Widget _topCategoriesListView() {
+      return SizedBox(
+        height: 50,
+        child: controller.length != 0
+            ? ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: controller.length,
+                itemBuilder: (_, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: GetBuilder<ProductController>(
+                      builder: (ProductController controller) {
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          width: 50,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color:
+                                controller.categories[index].isSelected == false
+                                    ? Colors.white
+                                    : AppColor.theme,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: IconButton(
+                            splashRadius: 0.1,
+                            icon: FaIcon(controller.categories[index].icon,
+                                color:
+                                    controller.categories[index].isSelected ==
+                                            false
+                                        ? AppColor.theme
+                                        : Colors.white),
+                            onPressed: () =>
+                                controller.filterItemsByCategory(index),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              )
+            : Center(child: CircularProgressIndicator()),
+      );
+    }
 
     return Scaffold(
       body: Stack(
@@ -187,7 +185,6 @@ class _HomePageState extends State<HomePage> {
               tween: Tween<double>(begin: 0, end: vlu),
               duration: const Duration(milliseconds: 500),
               builder: (_, double val, __) {
-
                 return (Transform(
                     alignment: Alignment.center,
                     transform: Matrix4.identity()
@@ -208,32 +205,36 @@ class _HomePageState extends State<HomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   IconButton(
-                                      onPressed: (() { 
+                                      onPressed: (() {
                                         setState(() {
                                           vlu == 0 ? vlu = 1 : vlu = 0;
-                                          if(drwearopen== true){
-                                            drwearopen= false;
+                                          if (drwearopen == true) {
+                                            drwearopen = false;
+                                          } else {
+                                            drwearopen = true;
                                           }
-                                          else{ drwearopen= true;}
                                         });
                                       }),
                                       tooltip: MaterialLocalizations.of(context)
                                           .openAppDrawerTooltip,
-                                      icon:drwearopen== true?Icon(Icons.close): Icon(Icons.menu)),
+                                      icon: drwearopen == true
+                                          ? Icon(Icons.close)
+                                          : Icon(Icons.menu)),
                                   const Text(
                                     "ECFisher",
-                                    style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   InkWell(
                                       onTap: (() {
-                                       
                                         Navigator.of(context).push(
                                           MaterialPageRoute(
                                             builder: (_) => OrderTracking(),
                                           ),
                                         );
                                       }),
-                                      child:  Icon(Icons.shopping_cart)),
+                                      child: Icon(Icons.shopping_cart)),
                                 ],
                               ),
                               Row(
@@ -301,28 +302,29 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                    body:SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                
-                Container(child: _recommendedProductListView(context)),
-                _topCategoriesHeader(context),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: _topCategoriesListView(),
-                ),
-                const SizedBox(height: 800, child: ProductGridView())
-              ],
-            ),
-          ),
-        ),
-      ), 
-                    ))
-                    );
+                      body: SafeArea(
+                        child: SingleChildScrollView(
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                    child:
+                                        _recommendedProductListView(context)),
+                                _topCategoriesHeader(context),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 20),
+                                  child: _topCategoriesListView(),
+                                ),
+                                const SizedBox(
+                                    height: 800, child: ProductGridView())
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    )));
               }),
           // GestureDetector(
           //   onHorizontalDragUpdate: (e) {
@@ -341,5 +343,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import '../core/app_color.dart';
 import '../src/test2.dart';
+import '../signup.dart';
 
 
 class Body extends StatelessWidget {
@@ -79,14 +80,21 @@ class NoAccountText extends StatelessWidget {
           style: TextStyle(fontSize: (16/ 375.0) * scrwidth),
         ),
         GestureDetector(
-          // onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
+          //  onTap: () => Navigator.pushNamed(context, SignUp.routeName),
           child: Text(
             "Sign Up",
             style: TextStyle(
                 fontSize: (16/ 375.0) * scrwidth,
                 color: AppColor.theme),
           ),
+          onTap: (){
+            
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpScreen()));
+           },
+          
+          
         ),
+        
       ],
     );
   }
